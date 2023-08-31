@@ -1,10 +1,10 @@
 /* eslint-disable no-case-declarations */
 
 export function evaluateSensor({ sensor, reference }): {
-  sensorName: string
+  name: string
   evaluation: string
 } {
-  const { variant, name: sensorName, data } = sensor
+  const { variant, name: name, data } = sensor
   const average =
     data.reduce((sum, reading) => sum + reading.value, 0) / data.length
 
@@ -29,20 +29,20 @@ export function evaluateSensor({ sensor, reference }): {
         evaluation = 'precise'
       }
 
-      return { sensorName, evaluation }
+      return { name, evaluation }
 
     case 'humidity':
       const humidityInRange = data.every(
         (d) => Math.abs(d.value - reference.humidity) <= 1,
       )
-      return { sensorName, evaluation: humidityInRange ? 'keep' : 'discard' }
+      return { name, evaluation: humidityInRange ? 'keep' : 'discard' }
 
     case 'monoxide':
       const carbonMonoxideInRange = data.every(
         (d) => Math.abs(d.value - reference.carbonMonoxide) <= 3,
       )
       return {
-        sensorName,
+        name,
         evaluation: carbonMonoxideInRange ? 'keep' : 'discard',
       }
   }

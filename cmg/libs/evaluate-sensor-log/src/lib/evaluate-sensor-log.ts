@@ -11,7 +11,8 @@ export function evaluateSensorLogWithWorkers(
   })
 }
 
-export async function evaluateSensorLog(log: string): Promise<string> {
-  console.log('Evaluating log contents', log)
+export async function evaluateSensorLog(
+  log: string,
+): Promise<Record<string, string>> {
   return await processLog(log)
 }

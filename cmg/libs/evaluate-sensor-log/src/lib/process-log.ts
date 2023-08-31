@@ -35,8 +35,9 @@ function parseLog(log: string): IParsedLog {
   return { sensors, reference }
 }
 
-export function processLog(log: string): any {
+export async function processLog(log: string): Promise<Record<string, string>> {
   const results: IEvaluationResult[] = []
+  const output: { [name: string]: string } = {}
 
   const { sensors, reference } = parseLog(log)
 
@@ -44,5 +45,9 @@ export function processLog(log: string): any {
     results.push(evaluateSensor({ sensor, reference }))
   }
 
-  return results
+  for (const r of results) {
+    output[r.name] = r.evaluation
+  }
+
+  return output
 }

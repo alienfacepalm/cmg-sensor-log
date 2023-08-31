@@ -14,6 +14,6 @@ export interface IReference {
 }
 
 export interface IEvaluationResult {
-  sensorName: string
+  name: string
   evaluation: string
 }
