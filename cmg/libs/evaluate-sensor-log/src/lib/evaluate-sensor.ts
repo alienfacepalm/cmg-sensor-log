@@ -4,7 +4,7 @@ export function evaluateSensor({ sensor, reference }): {
   name: string
   evaluation: string
 } {
-  const { variant, name: name, data } = sensor
+  const { variant, name, data } = sensor
   const average =
     data.reduce((sum, reading) => sum + reading.value, 0) / data.length
 
