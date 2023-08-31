@@ -6,7 +6,7 @@ export function evaluateSensor({ sensor, reference }): {
 } {
   const { variant, name, data } = sensor
   const average =
-    data.reduce((sum, reading) => sum + reading.value, 0) / data.length
+    data.reduce((accumulator, d) => accumulator + d.value, 0) / data.length
 
   switch (variant) {
     case 'thermometer':
