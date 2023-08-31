@@ -1,11 +1,12 @@
 import * as fs from 'fs'
-import * as readline from 'readline'
 import { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify'
 
 import {
   evaluateSensorLog,
   evaluateSensorLogWithWorkers,
 } from '@cmg/evaluate-sensor-log'
+
+import { readFileContents } from '../util/read-file-contents'
 
 interface IRequestParams {
   Params: {
@@ -35,29 +36,16 @@ export default async function (fastify: FastifyInstance) {
       if (useWorkers) {
         // workerized version that takes a path
         try {
-          await fs.accessSync(logFilePath)
           reply.send(evaluateSensorLogWithWorkers(logFilePath))
         } catch (error) {
           reply.status(404).send('File not found')
         }
       } else {
-        // Non workerized version reads text and passes to parser
-        let log = ''
-        const input: fs.ReadStream = fs.createReadStream(logFilePath, 'utf-8')
+        // Non workerized version reads text and passes log contents to parser
         try {
           await fs.accessSync(logFilePath)
-          const reader: readline.Interface = readline.createInterface({ input })
-
-          reader.on('line', (line) => {
-            log += `${line}\n`
-          })
-
-          reader.on('close', async () => {
-            console.log('--------------------------------------')
-
-            reply.send(JSON.stringify(log, null, 2))
-            // reply.send(await evaluateSensorLog(log))
-          })
+          const logContentsStr = await readFileContents(logFilePath)
+          reply.send(await evaluateSensorLog(logContentsStr))
         } catch (error) {
           reply.status(404).send('File not found')
         }

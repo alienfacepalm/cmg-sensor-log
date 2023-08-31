@@ -18,6 +18,7 @@
       "files": ["*.json"],
       "parser": "jsonc-eslint-parser",
       "rules": {
+        "no-case-declarations": "off",
         "@nx/dependency-checks": "error"
       }
     }

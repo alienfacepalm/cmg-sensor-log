@@ -1,3 +1,4 @@
+import { evaluateSensor } from './evaluate-sensor'
 import { IEvaluationResult, IReference, ISensor } from './types'
 
 interface IParsedLog {
@@ -35,9 +36,13 @@ function parseLog(log: string): IParsedLog {
 }
 
 export function processLog(log: string): any {
-  // const results: IEvaluationResult[] = []
+  const results: IEvaluationResult[] = []
 
-  const parsedLog: any = parseLog(log)
+  const { sensors, reference } = parseLog(log)
 
-  return parsedLog
+  for (const sensor of sensors) {
+    results.push(evaluateSensor({ sensor, reference }))
+  }
+
+  return results
 }
