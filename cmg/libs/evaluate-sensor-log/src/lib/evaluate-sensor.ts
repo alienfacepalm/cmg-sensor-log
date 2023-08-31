@@ -8,6 +8,7 @@ export function evaluateSensor({ sensor, reference }): {
   const average =
     data.reduce((accumulator, d) => accumulator + d.value, 0) / data.length
 
+  // TODO: add unit test for variants
   switch (variant) {
     case 'thermometer':
       const diff = Math.sqrt(
