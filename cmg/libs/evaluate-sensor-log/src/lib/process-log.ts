@@ -6,7 +6,7 @@ interface IParsedLog {
   sensors: ISensor[]
 }
 
-function parseLog(log: string): IParsedLog {
+async function parseLog(log: string): Promise<IParsedLog> {
   const lines = log.split('\n').filter((line) => line.trim() !== '')
 
   const sensors: ISensor[] = []
@@ -37,7 +37,7 @@ export async function processLog(log: string): Promise<Record<string, string>> {
   const results: IEvaluationResult[] = []
   const output: { [name: string]: string } = {}
 
-  const { sensors, reference } = parseLog(log)
+  const { sensors, reference } = await parseLog(log)
 
   for (const sensor of sensors) {
     results.push(evaluateSensor({ sensor, reference }))

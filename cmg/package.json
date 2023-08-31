@@ -2,7 +2,13 @@
   "name": "@cmg/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build:lib": "nx build evaluate-sensor-log",
+    "build:server": "nx build server --production",
+    "start:server": "nx serve server",
+    "build:all": "npm run build:lib && npm run build:server",
+    "start:all": "npm run build:all && npm run start:server"
+  },
   "private": true,
   "dependencies": {
     "@fastify/autoload": "~5.7.1",
