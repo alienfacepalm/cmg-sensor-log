@@ -14,7 +14,7 @@ interface IRequestParams {
 
 export default async function (fastify: FastifyInstance) {
   fastify.get('/', async function () {
-    return 'Hello CMG'
+    return { message: 'Hello CMG' }
   })
 
   fastify.get(
