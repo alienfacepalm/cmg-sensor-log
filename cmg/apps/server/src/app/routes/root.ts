@@ -25,7 +25,7 @@ export default async function (fastify: FastifyInstance) {
     ) {
       const logFileName: string = request.params.logFileName
 
-      let logFilePath = `${process.cwd()}/apps/server/src/data/${logFileName}`
+      let logFilePath = `${process.cwd()}/data/${logFileName}`
       if (!logFilePath.endsWith('.log')) logFilePath = `${logFilePath}.log`
 
       try {
