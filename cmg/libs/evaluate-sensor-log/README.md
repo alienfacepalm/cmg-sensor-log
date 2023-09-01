@@ -1,11 +1,9 @@
-# evaluate-sensor-log
+## Evaluate Sensor Log
 
-This library was generated with [Nx](https://nx.dev).
+```
+import { evaluateSensorLog} from '@cmg/evaluate-sensor-log'
 
-## Building
+const logContentsStr = '...'
 
-Run `nx build evaluate-sensor-log` to build the library.
-
-## Running unit tests
-
-Run `nx test evaluate-sensor-log` to execute the unit tests via [Jest](https://jestjs.io).
+return await evaluateSensorLog(logContentsStr)
+```
