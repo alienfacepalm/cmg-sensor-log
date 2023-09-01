@@ -31,6 +31,7 @@ export default async function (fastify: FastifyInstance) {
       try {
         await fs.accessSync(logFilePath)
         const logContentsStr = await readFileContents(logFilePath)
+        reply.header('Content-Type', 'application/json')
         reply.send(await evaluateSensorLog(logContentsStr))
       } catch (error) {
         reply.status(404).send('File not found')
