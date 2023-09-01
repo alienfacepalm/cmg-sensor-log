@@ -10,4 +10,10 @@ else
 fi
 
 cd cmg
+echo "=========================================================================="
+echo "!! Please open web browser to http://localhost:2641/evaluate/sensors.log"
+echo "=========================================================================="
 npm run start:all 
+
+
+ 
