@@ -1,5 +1,6 @@
 import { evaluateSensor } from './evaluate-sensor'
 import { IEvaluationResult, IReference, ISensor } from './types'
+import sensorProducts from './sensors-products'
 
 interface IParsedLog {
   reference: IReference
@@ -22,7 +23,7 @@ async function parseLog(log: string): Promise<IParsedLog> {
         humidity: Number(cols[2]),
         carbonMonoxide: Number(cols[3]),
       }
-    } else if (['thermometer', 'humidity', 'monoxide'].includes(cols[0])) {
+    } else if (sensorProducts.includes(cols[0])) {
       sensor = { variant: cols[0], name: cols[1], data: [] }
       sensors.push(sensor)
     } else if (sensor) {
