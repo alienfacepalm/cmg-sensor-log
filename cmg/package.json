@@ -4,8 +4,8 @@
   "license": "MIT",
   "scripts": {
     "build:lib": "nx build evaluate-sensor-log",
-    "build:server": "nx build server --production",
-    "start:server": "nx serve server",
+    "build:server": "nx build server --prod",
+    "start:server": "nx serve server --prod",
     "build:all": "npm run build:lib && npm run build:server",
     "start:all": "npm run build:all && npm run start:server"
   },
