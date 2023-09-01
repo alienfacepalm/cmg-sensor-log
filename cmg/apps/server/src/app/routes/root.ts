@@ -29,12 +29,14 @@ export default async function (fastify: FastifyInstance) {
       if (!logFilePath.endsWith('.log')) logFilePath = `${logFilePath}.log`
 
       try {
-        await fs.accessSync(logFilePath)
+        fs.accessSync(logFilePath)
         const logContentsStr = await readFileContents(logFilePath)
         reply.header('Content-Type', 'application/json')
         reply.send(await evaluateSensorLog(logContentsStr))
       } catch (error) {
-        reply.status(404).send('File not found')
+        reply
+          .status(404)
+          .send({ error: { code: 404, message: 'log file not found' } })
       }
     },
   )
