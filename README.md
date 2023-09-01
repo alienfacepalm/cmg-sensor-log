@@ -8,8 +8,6 @@
 
 #### Run the following from project root
 
-1. `cd cmg`
-2. `npm i`
-3. `npm run start:all`
-4. Navigate browser or Postman to
-`http://localhost:2641/evaluate/sensors.log`
+1. `./run.sh`
+2. Navigate browser or Postman to
+   `http://localhost:2641/evaluate/sensors.log`
