@@ -1,7 +1,7 @@
 ## Evaluate Sensor Log
 
 ```
-import { evaluateSensorLog} from '@cmg/evaluate-sensor-log'
+import { evaluateSensorLog } from '@cmg/evaluate-sensor-log'
 
 const logContentsStr = '...'
 
